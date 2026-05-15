@@ -11,79 +11,47 @@ class ListNode {
   } 
 }; 
 
-ListNode* reverse(ListNode*head){
-    
-    ListNode*cur = head;
-    ListNode*prev =NULL;
-    ListNode*next;
-   
-    while(cur != nullptr  ){
-       next = cur->next;
-       cur->next = prev;
-       prev = cur;
-       cur = next;
-    }
-    
-    return prev;
-}
-
 ListNode * subReverse(int k, ListNode* head){
+    
+    if(head == NULL || head->next == NULL || k<=1) return head;
     
     ListNode*cur = head;
     ListNode*prev = nullptr;
     ListNode*next = nullptr;
-     bool flag = true;
-    
+   
     while(true){
         
         ListNode* prevLast = prev;
         ListNode* curLast = cur;
         
-        if(flag){
-             
-        for(int i = 0;i<k && cur != nullptr;i++){
+        for(int i=0;i<k && cur!= NULL ;i++){
             next = cur->next;
-            cur->next =prev;
-            prev = cur;
-            cur =next;
-    
+            cur->next= prev;
+            prev=cur;
+            cur = next;
         }
         
-        if(prevLast != NULL){
-           prevLast->next = prev;
+        if(prevLast != nullptr){
+            prevLast->next = prev;
         }
         else{
             head = prev;
         }
+        
         curLast->next = cur;
-        if(cur == nullptr ) break;
         
-      
-        flag=false;
-        //prev = curLast;
+        
+        for(int i=0;i<k && cur != nullptr;i++){
+            prev = cur;
+            cur = cur->next;
         }
         
-        else{
-         
-        //cout<<endl<<prev->value<<endl;
-            for(int i=0;i<k;i++){
-               
-               prev = cur;
-               cur = cur->next;
-            
-            }
-             if(cur == nullptr ) break;
-           //  cur=temp;
-            // prev=
-            cout<<endl<<prev->value<<endl;
-            flag = true;
-        }
-        
-        
+         if(cur == nullptr) break;
     }
-    return head;
+   return head;
     
 }
+
 void print(ListNode *head){
     ListNode *cur = head;
     while(cur != nullptr){
