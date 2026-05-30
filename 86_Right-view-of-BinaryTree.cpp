@@ -38,12 +38,14 @@ vector<int> rightViewBT(Node* root){
         for(int i=0;i<level;i++){
             Node* cur = q.front();
             q.pop();
+
+            if (i == level - 1) {
+               res.push_back(cur->val);
+             }
+            
             if(cur->left != nullptr) q.push(cur->left);
-            if(cur->right != nullptr) q.push(cur->right);
-            lastVal =  cur->val;
-      
+            if(cur->right != nullptr) q.push(cur->right);      
         }
-        res.push_back(lastVal);
     }
     
     return res;
