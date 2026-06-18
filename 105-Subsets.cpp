@@ -27,7 +27,29 @@ vector<vector<int>> findSubsets(vector<int> num ){
     return res;
 }
 
+//iterative approach
+/*
 
+vector<vector<int>> findSubsets(vector<int> num ){
+    vector<vector<int>> subset;
+    subset.push_back({});
+    
+    for(auto curNum : num){
+        int n = subset.size();
+        
+        for(int i=0;i<n;i++){
+            vector<int> set = subset[i];
+            
+            set.push_back(curNum);
+            
+            subset.push_back(set);
+        }
+    }
+    
+    return subset;
+}
+
+    */
 int main(int argc, char* argv[]) { 
   vector<vector<int>> result = findSubsets(vector{1, 3}); 
   cout << "Here is the list of subsets: " << endl; 
